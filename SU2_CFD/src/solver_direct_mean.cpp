@@ -11970,8 +11970,9 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
 
           if (iVertex < 5){
 
-          cout << "CartCoord: " << geometry->vertex[val_marker][iVertex]->GetCoord(1) << "  ";
-          cout << "CartCoord: " << geometry->vertex[val_marker][iVertex]->GetCoord() << "  ";
+          cout << "CartCoord: " << geometry->vertex[val_marker][iVertex]->GetCoord(0) << "  ";
+          CartCoord0 = geometry->vertex[val_marker][iVertex]->GetCoord();
+          cout << "CartCoord: " << CartCoord0 << "  ";
 
           };
 
