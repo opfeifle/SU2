@@ -11865,7 +11865,7 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
   alpha, aa, bb, cc, dd, Area, UnitNormal[3];
   su2double *V_inlet, *V_domain, CoordRad, alphaT;
 
-  su2double *CartCoord0, CartCoord1 = 0.0, CartCoord2 = 0.0;
+  su2double Cart_x = 0.0, Cart_y = 0.0, Cart_z = 0.0;
 
 
   su2double RadH_arr[11] = { 0.0, 0.115413, 0.224572, 0.330630, 0.435733, 0.539555, 0.640054, 0.735877, 0.827257, 1.0 };
@@ -11897,9 +11897,9 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
     iPoint = geometry->vertex[val_marker][iVertex]->GetNode();
 
 
-    CartCoord1 = geometry->node[iPoint]->GetCoord(1);
-    CartCoord2 = geometry->node[iPoint]->GetCoord(2);
-
+    Cart_x = geometry->node[iPoint]->GetCoord(0);
+    Cart_y = geometry->node[iPoint]->GetCoord(1);
+    Cart_z = geometry->node[iPoint]->GetCoord(2);
 
     /*--- Check if the node belongs to the domain (i.e., not a halo node) ---*/
 
@@ -11944,7 +11944,7 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
 
           /*--- Retrieve the specified total conditions for this inlet. ---*/
 
-          CoordRad = sqrt(pow(CartCoord1, 2) + pow(CartCoord2, 2));
+          CoordRad = sqrt(pow(Cart_y, 2) + pow(Cart_z, 2));
 
           if (gravity) {P_Total = config->GetInlet_Ptotal(Marker_Tag) - geometry->node[iPoint]->GetCoord(nDim-1)*STANDART_GRAVITY;}
           else P_Total  = config->GetInlet_Ptotal(Marker_Tag);  /*su2double *Inlet_Ptotal; */
@@ -11970,7 +11970,7 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
 
           if (iVertex < 5){
 
-          cout << "CartCoord: " << geometry->node[iPoint]->GetCoord(1) << "  ";
+          cout << "CartCoord: " << Coord_Rad << "  ";
 
 
           };
