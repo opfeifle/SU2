@@ -11865,7 +11865,7 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
   alpha, aa, bb, cc, dd, Area, UnitNormal[3];
   su2double *V_inlet, *V_domain, CoordRad, alphaT;
 
-  su2double *CartCoord0, CartCoord1, CartCoord2;
+  su2double *CartCoord0, CartCoord1 = 0.0, CartCoord2 = 0.0;
 
 
   su2double RadH_arr[11] = { 0.0, 0.115413, 0.224572, 0.330630, 0.435733, 0.539555, 0.640054, 0.735877, 0.827257, 1.0 };
@@ -11897,8 +11897,8 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
     iPoint = geometry->vertex[val_marker][iVertex]->GetNode();
 
 
-    CartCoord1 = geometry->vertex[val_marker][iVertex]->GetCoord(1);
-    CartCoord2 = geometry->vertex[val_marker][iVertex]->GetCoord(2);
+    CartCoord1 = geometry->node[iPoint]->GetCoord(1);
+    CartCoord2 = geometry->node[iPoint]->GetCoord(2);
 
 
     /*--- Check if the node belongs to the domain (i.e., not a halo node) ---*/
@@ -11970,9 +11970,8 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
 
           if (iVertex < 5){
 
-          cout << "CartCoord: " << geometry->vertex[val_marker][iVertex]->GetCoord(0) << "  ";
-          CartCoord0 = geometry->vertex[val_marker][iVertex]->GetCoord();
-          cout << "CartCoord: " << *CartCoord0 << "  ";
+          cout << "CartCoord: " << geometry->node[iPoint]->GetCoord(1) << "  ";
+          cout << "CartCoord: " << *CartCoord1 << "  ";
 
           };
 
