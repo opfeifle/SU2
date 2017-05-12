@@ -11863,7 +11863,7 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
   su2double P_Total, T_Total, Velocity[3], Velocity2, H_Total, Temperature, Riemann,
   Pressure, Density, Energy, *Flow_Dir, Mach2, SoundSpeed2, SoundSpeed_Total2, Vel_Mag,
   alpha, aa, bb, cc, dd, Area, UnitNormal[3], CartCoord;
-  su2double *V_inlet, *V_domain, CoordRad, alphaT, i;
+  su2double *V_inlet, *V_domain, CoordRad[3], alphaT;
 
 
   su2double RadH_arr[11] = { 0.0, 0.115413, 0.224572, 0.330630, 0.435733, 0.539555, 0.640054, 0.735877, 0.827257, 1.0 };
@@ -11871,6 +11871,7 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
   su2double Ttot_arr[11] = { 1070.103798, 999.430345, 961.766281, 973.420428, 1007.317933, 1017.835531, 993.474410, 963.426474, 949.551224, 950.096890, 957.024660 };
   su2double alpha_arr[11] = { 112.479996, 112.549207, 112.489313, 112.200901, 111.584334, 110.551082, 109.131026, 107.470189, 105.681356, 103.839091, 101.999993 };
 
+  int i
   bool implicit             = (config->GetKind_TimeIntScheme_Flow() == EULER_IMPLICIT);
   bool grid_movement        = config->GetGrid_Movement();
   su2double Two_Gamma_M1       = 2.0/Gamma_Minus_One;
