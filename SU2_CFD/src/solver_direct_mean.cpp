@@ -11963,6 +11963,12 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
 
           };
 
+          if (iVertex < 5){
+            cout << "CartCoord: " << CartCoord;
+
+          };
+
+
           /*--- Non-dim. the inputs if necessary. ---*/
 
           P_Total /= config->GetPressure_Ref();
