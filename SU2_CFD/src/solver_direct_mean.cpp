@@ -11862,7 +11862,7 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
   unsigned long iVertex, iPoint, Point_Normal;
   su2double P_Total, T_Total, Velocity[3], Velocity2, H_Total, Temperature, Riemann,
   Pressure, Density, Energy, *Flow_Dir, Mach2, SoundSpeed2, SoundSpeed_Total2, Vel_Mag,
-  alpha, aa, bb, cc, dd, Area, UnitNormal[3], CartCoord;
+  alpha, aa, bb, cc, dd, Area, UnitNormal[3], CartCoord[3];
   su2double *V_inlet, *V_domain, CoordRad, alphaT;
 
 
@@ -11894,7 +11894,8 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
 
     iPoint = geometry->vertex[val_marker][iVertex]->GetNode();
 
-    CartCoord = geometry->vertex[val_marker][iVertex]->GetCoord(1);
+    CartCoord[1] = geometry->vertex[val_marker][iVertex]->GetCoord(1);
+    CartCoord[2] = geometry->vertex[val_marker][iVertex]->GetCoord(2);
 
 
     /*--- Check if the node belongs to the domain (i.e., not a halo node) ---*/
@@ -11965,7 +11966,7 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
           };
 
           if (iVertex < 5){
-            cout << "CartCoord: " << CartCoord[0];
+            cout << "CartCoord: " << CartCoord[1];
 
           };
 
