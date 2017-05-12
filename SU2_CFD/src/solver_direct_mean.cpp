@@ -11862,10 +11862,10 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
   unsigned long iVertex, iPoint, Point_Normal;
   su2double P_Total, T_Total, Velocity[3], Velocity2, H_Total, Temperature, Riemann,
   Pressure, Density, Energy, *Flow_Dir, Mach2, SoundSpeed2, SoundSpeed_Total2, Vel_Mag,
-  alpha, aa, bb, cc, dd, Area, UnitNormal[3];
-  su2double *V_inlet, *V_domain, CoordRad, alphaT;
+  alpha, aa, bb, cc, dd, Area, UnitNormal[3], CartCoord;
+  su2double *V_inlet, *V_domain, CoordRad, alphaT, i;
 
-  su2double CartCoord[3];
+
   su2double RadH_arr[11] = { 0.0, 0.115413, 0.224572, 0.330630, 0.435733, 0.539555, 0.640054, 0.735877, 0.827257, 1.0 };
   su2double Ptot_arr[11] = { 344897.793516, 341106.524640, 337676.823868, 334626.930450, 332011.589055, 329951.267153, 328473.170761, 327442.634582, 326711.684351, 326161.449185, 325698.752921 };
   su2double Ttot_arr[11] = { 1070.103798, 999.430345, 961.766281, 973.420428, 1007.317933, 1017.835531, 993.474410, 963.426474, 949.551224, 950.096890, 957.024660 };
@@ -11938,15 +11938,15 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
 
           /*--- Retrieve the specified total conditions for this inlet. ---*/
 
-          CoordRad = sqrt(pow(CartCoord[1], 2) + pow(CartCoord[2], 2))
+          CoordRad = sqrt(pow(CartCoord[1], 2) + pow(CartCoord[2], 2));
 
-          if (gravity) P_Total = config->GetInlet_Ptotal(Marker_Tag) - geometry->node[iPoint]->GetCoord(nDim-1)*STANDART_GRAVITY;
+          if (gravity) {P_Total = config->GetInlet_Ptotal(Marker_Tag) - geometry->node[iPoint]->GetCoord(nDim-1)*STANDART_GRAVITY;}
           else P_Total  = config->GetInlet_Ptotal(Marker_Tag);  /*su2double *Inlet_Ptotal; */
           T_Total  = config->GetInlet_Ttotal(Marker_Tag);
           Flow_Dir = config->GetInlet_FlowDir(Marker_Tag);
 
           for (i = 0; i < 11; i++){
-            if CoordRad < RadH_arr[i] && CoordRad >= RadH_arr[i-1]{
+            if (CoordRad < RadH_arr[i] && CoordRad >= RadH_arr[i-1]){
                 P_Total = Ptot_arr[i-1] + (CoordRad - RadH_arr[i-1]) / (RadH_arr[i] - RadH_arr[i-1]) * (Ptot_arr[i] - Ptot_arr[i-1]);
                 T_Total = Ttot_arr[i-1] + (CoordRad - RadH_arr[i-1]) / (RadH_arr[i] - RadH_arr[i-1]) * (Ttot_arr[i] - Ttot_arr[i-1]);
                 alphaT  = alpha_arr[i-1] + (CoordRad - RadH_arr[i-1]) / (RadH_arr[i] - RadH_arr[i-1]) * (alpha_arr[i] - alpha_arr[i-1]);
@@ -11955,7 +11955,7 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
           }
 
 
-          if (ndim == 3) {
+          if (nDim == 3) {
             Flow_Dir[0] =  cos((alpha-90)/57.3); /* local swirl [rad] = (alphaT-90)/57.3   */
             Flow_Dir[1] = -CartCoord[2] * sin((alpha-90)/57.3) / CoordRad;
             Flow_Dir[2] =  CartCoord[1] * sin((alpha-90)/57.3) / CoordRad;
