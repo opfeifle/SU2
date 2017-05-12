@@ -11862,7 +11862,7 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
   unsigned long iVertex, iPoint, Point_Normal;
   su2double P_Total, T_Total, Velocity[3], Velocity2, H_Total, Temperature, Riemann,
   Pressure, Density, Energy, *Flow_Dir, Mach2, SoundSpeed2, SoundSpeed_Total2, Vel_Mag,
-  alpha, aa, bb, cc, dd, Area, UnitNormal[3], *CartCoord;
+  alpha, aa, bb, cc, dd, Area, UnitNormal[3], CartCoord;
   su2double *V_inlet, *V_domain, CoordRad, alphaT;
 
 
