@@ -11955,7 +11955,7 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
 
           } */
 
-          alphaT = 110.0
+          alphaT = 110.0;
           if (nDim == 3) {
             Flow_Dir[0] =  cos((alpha-90)/57.3); /* local swirl [rad] = (alphaT-90)/57.3   */
             Flow_Dir[1] = -CartCoord[2] * sin((alpha-90)/57.3) / CoordRad;
