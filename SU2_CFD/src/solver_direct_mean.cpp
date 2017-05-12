@@ -11951,16 +11951,16 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
           T_Total  = config->GetInlet_Ttotal(Marker_Tag);
           Flow_Dir = config->GetInlet_FlowDir(Marker_Tag);
 
-          /* for (i = 0; i < 11; i++){
+          for (i = 0; i < 11; i++){
             if (CoordRad < RadH_arr[i] && CoordRad >= RadH_arr[i-1]){
-                P_Total = Ptot_arr[i-1] + (CoordRad - RadH_arr[i-1]) / (RadH_arr[i] - RadH_arr[i-1]) * (Ptot_arr[i] - Ptot_arr[i-1]);
-                T_Total = Ttot_arr[i-1] + (CoordRad - RadH_arr[i-1]) / (RadH_arr[i] - RadH_arr[i-1]) * (Ttot_arr[i] - Ttot_arr[i-1]);
+                /* P_Total = Ptot_arr[i-1] + (CoordRad - RadH_arr[i-1]) / (RadH_arr[i] - RadH_arr[i-1]) * (Ptot_arr[i] - Ptot_arr[i-1]);
+                T_Total = Ttot_arr[i-1] + (CoordRad - RadH_arr[i-1]) / (RadH_arr[i] - RadH_arr[i-1]) * (Ttot_arr[i] - Ttot_arr[i-1]); */
                 alphaT  = alpha_arr[i-1] + (CoordRad - RadH_arr[i-1]) / (RadH_arr[i] - RadH_arr[i-1]) * (alpha_arr[i] - alpha_arr[i-1]);
             }
 
-          } */
+          }
 
-          alphaT = 110.0;
+          /*alphaT = 110.0;*/
           if (nDim == 3) {
             Flow_Dir[0] =  cos((alphaT-90)/57.3); /* 0.95 0.31  local swirl [rad] = (alphaT-90)/57.3 */
             Flow_Dir[1] = -Cart_z * sin((alphaT-90)/57.3) / CoordRad;
@@ -11970,7 +11970,7 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
 
           if (iVertex < 5){
 
-          cout << "Flow_Dir: " << Flow_Dir[0] << " " << Flow_Dir[1] << " " << Flow_Dir[2] << " " << Cart_x << " " << Cart_y << " " << Cart_z << " " ;
+          cout << "Flow_Dir: " << Flow_Dir[0] << " " << Flow_Dir[1] << " " << Flow_Dir[2] << " " << Cart_x << " " << Cart_y << " " << Cart_z << " " alphaT;
 
 
           };
