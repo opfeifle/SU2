@@ -11953,8 +11953,8 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
 
           for (i = 0; i < 11; i++){
             if (CoordRad < RadH_arr[i] && CoordRad >= RadH_arr[i-1]){
-                /* P_Total = Ptot_arr[i-1] + (CoordRad - RadH_arr[i-1]) / (RadH_arr[i] - RadH_arr[i-1]) * (Ptot_arr[i] - Ptot_arr[i-1]);
-                T_Total = Ttot_arr[i-1] + (CoordRad - RadH_arr[i-1]) / (RadH_arr[i] - RadH_arr[i-1]) * (Ttot_arr[i] - Ttot_arr[i-1]); */
+                P_Total = Ptot_arr[i-1] + (CoordRad - RadH_arr[i-1]) / (RadH_arr[i] - RadH_arr[i-1]) * (Ptot_arr[i] - Ptot_arr[i-1]);
+                T_Total = Ttot_arr[i-1] + (CoordRad - RadH_arr[i-1]) / (RadH_arr[i] - RadH_arr[i-1]) * (Ttot_arr[i] - Ttot_arr[i-1]);
                 alphaT  = alpha_arr[i-1] + (CoordRad - RadH_arr[i-1]) / (RadH_arr[i] - RadH_arr[i-1]) * (alpha_arr[i] - alpha_arr[i-1]);
             }
 
