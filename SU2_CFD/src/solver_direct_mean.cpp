@@ -11894,9 +11894,8 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
 
     iPoint = geometry->vertex[val_marker][iVertex]->GetNode();
 
-    CartCoord[0] = geometry->vertex[val_marker][iVertex]->GetCoord(0);
-    CartCoord[1] = geometry->vertex[val_marker][iVertex]->GetCoord(1);
-    CartCoord[2] = geometry->vertex[val_marker][iVertex]->GetCoord(2);
+    CartCoord = geometry->vertex[val_marker][iVertex]->GetCoord;
+
 
     /*--- Check if the node belongs to the domain (i.e., not a halo node) ---*/
 
@@ -11966,7 +11965,7 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
           };
 
           if (iVertex < 5){
-            cout << "CartCoord: " << CartCoord;
+            cout << "CartCoord: " << *CartCoord;
 
           };
 
