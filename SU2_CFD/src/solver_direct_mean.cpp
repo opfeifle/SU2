@@ -11863,7 +11863,7 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
   su2double P_Total, T_Total, Velocity[3], Velocity2, H_Total, Temperature, Riemann,
   Pressure, Density, Energy, *Flow_Dir, Mach2, SoundSpeed2, SoundSpeed_Total2, Vel_Mag,
   alpha, aa, bb, cc, dd, Area, UnitNormal[3];
-  su2double *V_inlet, *V_domain, CoordRad, alphaT;
+  su2double *V_inlet, *V_domain, CoordRad, alphaT, RadHT, RadHTmin;
 
   su2double Cart_x = 0.0, Cart_y = 0.0, Cart_z = 0.0;
 
@@ -11952,6 +11952,8 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
           Flow_Dir = config->GetInlet_FlowDir(Marker_Tag);
 
           for (i = 0; i < 11; i++){
+            RadHT = 0.135 + 0.109*RadH_arr[i];
+            RadHTmin = 0.135 + 0.109*RadH_arr[i-1];
             if (CoordRad < RadH_arr[i] && CoordRad >= RadH_arr[i-1]){
                 P_Total = Ptot_arr[i-1] + (CoordRad - RadH_arr[i-1]) / (RadH_arr[i] - RadH_arr[i-1]) * (Ptot_arr[i] - Ptot_arr[i-1]);
                 T_Total = Ttot_arr[i-1] + (CoordRad - RadH_arr[i-1]) / (RadH_arr[i] - RadH_arr[i-1]) * (Ttot_arr[i] - Ttot_arr[i-1]);
@@ -11970,7 +11972,7 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
 
           if (iVertex % 100 == 0){
 
-          cout << "Flow_Dir: " << alphaT << " " << Cart_x << " " << Cart_y << " " << Cart_z << " " << P_Total << " " << T_Total << " ";
+          cout << "Flow_Dir: " << alphaT << " " << Cart_x << " " << Cart_y << " " << Cart_z << " " << P_Total << " " << T_Total << " " << CoordRad << " ";
 
 
           };
