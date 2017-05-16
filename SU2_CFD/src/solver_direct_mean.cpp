@@ -11965,7 +11965,7 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
             }
             if (CoordRad > RadHT && i == 9){
                 P_Total = Ptot_arr[10];
-                T_total = Ttot_arr[10];
+                T_Total = Ttot_arr[10];
                 alphaT  = alpha_arr[10];
             }
 
