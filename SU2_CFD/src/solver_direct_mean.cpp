@@ -11951,11 +11951,11 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
           T_Total  = config->GetInlet_Ttotal(Marker_Tag);
           Flow_Dir = config->GetInlet_FlowDir(Marker_Tag);
 
-          alphaT = 90.0;
+          alphaT = 110.0;
 
           for (i = 0; i < 10; i++){
-            RadHT = 0.135 + 0.109*RadH_arr[i+1];
-            RadHTmin = 0.135 + 0.109*RadH_arr[i];
+            RadHT = /*0.135 + 0.109**/ 0.244*RadH_arr[i+1];
+            RadHTmin = /*0.135 + 0.109**/ 0.244*RadH_arr[i];
 
             if (CoordRad < RadHT && CoordRad >= RadHTmin){
                 P_Total = Ptot_arr[i] + (CoordRad - RadHTmin) / (RadHT - RadHTmin) * (Ptot_arr[i+1] - Ptot_arr[i]);
