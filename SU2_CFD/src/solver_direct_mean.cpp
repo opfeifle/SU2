@@ -11980,12 +11980,12 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
 
           };
 
-          if (iVertex % 100 == 0){
+          /*  if (iVertex % 100 == 0){
 
-          /* cout << "Flow_Dir: " << alphaT << " " << Cart_x << " " << Cart_y << " " << Cart_z << " " << P_Total << " " << T_Total << " " << CoordRad << " " << testflowdir[0] << " " << Flow_Dir[0] << " "; */
+          cout << "Flow_Dir: " << alphaT << " " << Cart_x << " " << Cart_y << " " << Cart_z << " " << P_Total << " " << T_Total << " " << CoordRad << " " << testflowdir[0] << " " << Flow_Dir[0] << " ";
 
 
-          };
+          };*/
 
 
           /*--- Non-dim. the inputs if necessary. ---*/
