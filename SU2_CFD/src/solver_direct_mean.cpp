@@ -11861,7 +11861,7 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
   unsigned short iDim;
   unsigned long iVertex, iPoint, Point_Normal;
   su2double P_Total, T_Total, Velocity[3], Velocity2, H_Total, Temperature, Riemann,
-  Pressure, Density, Energy, *Flow_Dir, *testflowdir, Mach2, SoundSpeed2, SoundSpeed_Total2, Vel_Mag,
+  Pressure, Density, Energy, *Flow_Dir, Mach2, SoundSpeed2, SoundSpeed_Total2, Vel_Mag,
   alpha, aa, bb, cc, dd, Area, UnitNormal[3];
   su2double *V_inlet, *V_domain, CoordRad, alphaT, RadHT, RadHTmin;
 
@@ -11950,7 +11950,6 @@ void CEulerSolver::BC_Inlet(CGeometry *geometry, CSolver **solver_container,
           else P_Total  = config->GetInlet_Ptotal(Marker_Tag);  /*su2double *Inlet_Ptotal; */
           T_Total  = config->GetInlet_Ttotal(Marker_Tag);
           Flow_Dir = config->GetInlet_FlowDir(Marker_Tag);
-          testflowdir = Flow_Dir;
 
           alphaT = 110.0;
 
